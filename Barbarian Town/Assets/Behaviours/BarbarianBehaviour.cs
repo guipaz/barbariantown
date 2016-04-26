@@ -4,30 +4,72 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
+[RequireComponent(typeof(BarbarianData))]
 public class BarbarianBehaviour : BaseBehaviour, ITickable
 {
-    ObjectData data;
-    
-    float moveCooldown = 0;
+    BarbarianData data;
 
     void Awake()
     {
-        data = GetComponent<ObjectData>();
+        data = GetComponent<BarbarianData>();
+
+        foreach (Job.Type job in data.allowedJobs)
+        {
+            switch (job)
+            {
+                case Job.Type.Chop:
+                    gameObject.AddComponent<ChopBehaviour>();
+                    break;
+            }
+        }
     }
 
     public void Tick()
     {
-        if (moveCooldown > 0)
+        if (data.currentJob == null || data.currentJob.type == Job.Type.Idle)
+            FindJob();
+
+        switch (data.currentJob.type)
         {
-            moveCooldown -= Time.deltaTime;
-            return;
+            case Job.Type.Chop:
+                ChopBehaviour chop = GetComponent<ChopBehaviour>();
+                if (chop != null)
+                    chop.Tick();
+                break;
+        }
+    }
+
+    public override void Perform(KeyCode code)
+    {
+        switch (code)
+        {
+            case KeyCode.X:
+                Debug.Log(string.Format("Current job: {0}", data.currentJob != null ? data.currentJob.type.ToString() : "null"));
+                break;
+        }
+    }
+
+    void FindJob()
+    {
+        foreach (Job.Type allowedJob in data.allowedJobs)
+        {
+            List<Job> jobs = Global.jobManager.GetPending(allowedJob);
+            if (jobs != null && jobs.Count > 0)
+            {
+                Global.jobManager.AssignJob(jobs[0], data);
+                Debug.Log("Assign!");
+                break;
+            }
         }
 
-        int h = Global.random.Next(-1, 2);
-        int v = Global.random.Next(-1, 2);
-        Vector2 pos = transform.position + new Vector3(h, v, 0);
-        Global.mapManager.MoveObject(data, pos);
-
-        moveCooldown = Global.random.Next(1, 4);
+        // still no job, just be idle or wander
+        if (data.currentJob == null)
+        {
+            bool wander = Global.random.Next(0, 4) == 3; // 25%
+            if (wander)
+                data.currentJob = new Job(Job.Type.Wander, null, data);
+            else
+                data.currentJob = new Job(Job.Type.Idle, null, data);
+        } 
     }
 }

@@ -74,7 +74,10 @@ public class MapManager : MonoBehaviour
         
         List<ObjectData> objs = map.canvas[(int)pos.x, (int)pos.y];
         if (objs.Count > 0)
+        {
             return objs[objs.Count - 1];
+        }
+            
         return null;
     }
 

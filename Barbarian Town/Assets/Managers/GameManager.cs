@@ -19,14 +19,15 @@ public class GameManager : MonoBehaviour
         }
         set
         {
-            SpriteRenderer renderer = null;
+            SpriteRenderer[] renderer = null;
 
             // resets the last selected object's color
             if (_selectedObject != null)
             {
-                renderer = _selectedObject.gameObject.GetComponentInChildren<SpriteRenderer>();
+                renderer = _selectedObject.gameObject.GetComponentsInChildren<SpriteRenderer>();
                 if (renderer != null)
-                    renderer.color = Color.white;
+                    foreach (SpriteRenderer r in renderer)
+                        r.color = Color.white;
             }
             
             _selectedObject = value;
@@ -34,9 +35,10 @@ public class GameManager : MonoBehaviour
             // adjusts the color of the new selected object
             if (_selectedObject != null)
             {
-                renderer = _selectedObject.gameObject.GetComponentInChildren<SpriteRenderer>();
+                renderer = _selectedObject.gameObject.GetComponentsInChildren<SpriteRenderer>();
                 if (renderer != null)
-                    renderer.color = Color.blue;
+                    foreach (SpriteRenderer r in renderer)
+                        r.color = Color.blue;
             }
         }
     }

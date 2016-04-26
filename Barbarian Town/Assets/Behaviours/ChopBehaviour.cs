@@ -5,17 +5,27 @@ using System.Text;
 using UnityEngine;
 
 [RequireComponent(typeof(ObjectData))]
-public class ChopBehaviour : BaseBehaviour
+public class ChopBehaviour : BaseBehaviour, ITickable
 {
     ObjectData data;
+
+    float cooldown = 0;
 
     void Awake()
     {
         data = GetComponent<ObjectData>();
     }
 
-    public override void Perform(KeyCode code)
+    public void Tick()
     {
-        Debug.Log("Chop this!");
+        if (cooldown > 0)
+        {
+            cooldown -= Time.deltaTime;
+            return;
+        }
+
+        cooldown = 1;
+
+        Debug.Log("Chopping...");
     }
 }

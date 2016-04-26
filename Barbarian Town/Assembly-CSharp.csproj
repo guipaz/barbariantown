@@ -49,6 +49,7 @@
      <Compile Include="Assets\Behaviours\BaseBehaviour.cs" />
      <Compile Include="Assets\Behaviours\ChopBehaviour.cs" />
      <Compile Include="Assets\Behaviours\ITickable.cs" />
+     <Compile Include="Assets\Behaviours\JobBehaviour.cs" />
      <Compile Include="Assets\Behaviours\KeyListenerBehaviour.cs" />
      <Compile Include="Assets\Data\BarbarianData.cs" />
      <Compile Include="Assets\Data\Map.cs" />

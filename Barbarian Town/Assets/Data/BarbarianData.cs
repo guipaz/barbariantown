@@ -5,5 +5,6 @@ using System.Text;
 
 public class BarbarianData : ObjectData
 {
-    
+    public Job currentJob;
+    public List<Job.Type> allowedJobs;
 }

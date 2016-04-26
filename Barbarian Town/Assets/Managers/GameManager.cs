@@ -16,5 +16,6 @@ public class GameManager : MonoBehaviour
 	void Start ()
     {
         mapManager.Build(MapGenerator.CreateMap(mapW, mapH));
+        mapManager.CreateBarbarians(5);
     }
 }

@@ -1,10 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class MapManager : MonoBehaviour
 {
+    public Map map { get; private set; }
+
     public void Build(Map map)
     {
+        this.map = map;
+
         for (int y = 0; y < map.height; y++)
         {
             for (int x = 0; x < map.width; x++)
@@ -16,5 +21,10 @@ public class MapManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void CreateBarbarians(int v)
+    {
+        
     }
 }

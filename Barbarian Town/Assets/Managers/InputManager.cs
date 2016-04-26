@@ -40,9 +40,7 @@ public class InputManager : MonoBehaviour {
             v = 1;
         else if (Input.GetAxisRaw("Vertical") < 0)
             v = -1;
-
-        Debug.Log(h);
-
+        
         if (h != 0 || v != 0)
             pressed = true;
 

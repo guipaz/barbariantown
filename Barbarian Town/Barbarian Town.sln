@@ -1,7 +1,7 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2015
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Barbarian Town.CSharp", "Barbarian Town.CSharp.csproj", "{9C8AFB15-6D50-B06C-998C-678DB38D5560}"
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{13B66B60-283A-BCBF-8A2E-41517BD46318}") = "Barbarian Town", "Assembly-CSharp.csproj", "{3773F5C2-3605-B312-C722-ABF6F9924776}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,12 +9,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9C8AFB15-6D50-B06C-998C-678DB38D5560}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9C8AFB15-6D50-B06C-998C-678DB38D5560}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9C8AFB15-6D50-B06C-998C-678DB38D5560}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9C8AFB15-6D50-B06C-998C-678DB38D5560}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3773F5C2-3605-B312-C722-ABF6F9924776}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3773F5C2-3605-B312-C722-ABF6F9924776}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3773F5C2-3605-B312-C722-ABF6F9924776}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3773F5C2-3605-B312-C722-ABF6F9924776}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
 	EndGlobalSection
 EndGlobal

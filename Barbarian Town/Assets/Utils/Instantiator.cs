@@ -4,45 +4,26 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-public enum ETile
-{
-    None,
-    Grass,
-    Tree,
-    Bonfire,
-}
-
 public static class Instantiator
 {
-    static System.Random random = new System.Random();
-
-    static List<string> grasses = new List<string>() { "grass1", "grass2", "grass3" };
-
-    public static GameObject Create(ETile id, Vector2? pos = null, int? order = null)
+    public static ObjectData Create(string name, Vector2? pos = null, int? order = null)
     {
-        string prefab = "";
-        switch (id)
-        {
-            case ETile.Grass:
-                prefab = "map/" + grasses[random.Next(0, grasses.Count)];
-                break;
-            case ETile.Tree:
-                prefab = "map/tree";
-                break;
-            case ETile.Bonfire:
-                prefab = "objects/bonfire";
-                break;
-        }
-
-        if (prefab == "")
+        GameObject prefab = Resources.Load<GameObject>("prefabs/" + name);
+        if (prefab == null)
             return null;
 
-        GameObject obj = GameObject.Instantiate(Resources.Load<GameObject>("prefabs/" + prefab));
+        GameObject obj = GameObject.Instantiate(prefab);
         if (pos != null)
             obj.transform.position = (Vector2)pos;
         if (order != null)
             obj.GetComponentInChildren<SpriteRenderer>().sortingOrder = (int)order;
 
-        return obj;
+        ObjectData data = obj.GetComponent<ObjectData>();
+        data.x = (int)((Vector2)pos).x;
+        data.y = (int)((Vector2)pos).y;
+        if (data.sprites != null && data.sprites.Count > 0)
+            obj.GetComponentInChildren<SpriteRenderer>().sprite = data.sprites[Global.random.Next(0, data.sprites.Count)];
+
+        return data;
     }
 }
